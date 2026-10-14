@@ -1,0 +1,14 @@
+test: T2
+name: T2_gcd
+# 相位鎖定（gcd）與「階梯 vs 平滑」：在 T1 基礎上掃 P/CI 與 E1
+base: T1_fig3.yaml
+seeds: [0, 1, 2, 3, 4]
+T: 1800.0
+os: {median_s: 0.001}
+clock_dongle: {rho_ppm: 0.0}
+CI_values: [0.030, 0.03125, 0.0375, 0.045, 0.050]
+E1_values: [0.0005, 0.005, 0.010]
+# 取樣/封包計時器相對 dongle 的頻率差：
+#   locked = 封包由節點晶振計時（上一版模擬與規格的假設）→ 相對漂移 245 ppm
+#   paper  = T0 量到的 100.93 ms
+adc_cases: {locked_245ppm: 245.0, paper_100.93ms: 9300.0}

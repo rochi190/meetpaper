@@ -1,0 +1,17 @@
+test: T5
+name: T5_warmup
+# 時鐘暖機：T4 最佳參數 + A2/A3（每個節點的升溫曲線略不同，避免節點對完全抵消）
+base: T4_fig6.yaml
+T: 3600.0
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+n_nodes: 2
+use_T4_best: true
+clock_node:
+  temp: {enabled: true, T0: 25.0, k_ppm_per_C2: -0.034}
+sweep:
+  T_start: [22.0, 25.0]
+  T_end: [30.0, 34.0]
+  tau_min: [2.0, 5.0, 10.0]
+  scale_err_ppm: [0.0, -248.0]
+node_spread: {T_end_sd: 1.0, tau_rel_sd: 0.2}
+forget_values: [1.0, 0.9999, 0.999]

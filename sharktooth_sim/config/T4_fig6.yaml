@@ -1,0 +1,32 @@
+test: T4
+name: T4_fig6
+# 復現 Fig.6（主要目標）：4 節點 / 1 dongle、244 B；開 A1 A7 B1 B2 C1 C3 C4 C5 C11 D2 D3 E1 E2 E3
+T: 600.0
+seeds: [0, 1, 2]
+n_nodes: 4
+nodes_per_dongle: 4
+packet: {bytes: 244}
+clock_node:
+  rho_ppm: {uniform: [-20.0, 20.0]}     # A1
+  scale_err_ppm: -248.0                 # 讓 δT 斜率 ≈ 244 ppm（A8 候選：tick × 30.51 µs，見 T5）
+clock_pc: {rho_ppm: 0.0}
+clock_adc: {period_err_ppm: 7800.0}     # Fig.6 封包間隔 100.78 ms（T0）
+per: {enabled: true, good: 0.08, bad: 0.6, p_g2b: 0.0, mean_bad_events: 3.0}
+sched: {enabled: true, skip_prob: 0.0}
+startup: {enabled: true, delay_s: 0.12}
+serial: {enabled: true, base_s: 0.3e-3, per_byte_s: 4e-6}
+os: {enabled: true, median_s: 0.5e-3, sigma: 0.6, per_node_scale: 0.1}
+gil: {enabled: true, service_s: 0.15e-3}
+pauses: {enabled: true, rate_hz: 0.05, min_s: 0.005, max_s: 0.08}
+fit:
+  n_random: 500
+  n_refine: 300
+  ranges:
+    serial.base_s: [0.1e-3, 3.0e-3]
+    os.median_s: [0.1e-3, 3.0e-3]
+    per.good: [0.0, 0.15]
+    per.bad: [0.3, 1.0]
+    per.p_g2b: [0.0, 0.02]
+    per.mean_bad_events: [1.0, 5.0]
+    pauses.rate_hz: [0.0, 0.5]
+    startup.delay_s: [0.05, 0.2]

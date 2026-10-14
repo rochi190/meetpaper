@@ -1,0 +1,21 @@
+test: T6
+name: T6_tableII
+# 多節點與 Table II / Fig.10 / Fig.11 / Fig.12
+base: T4_fig6.yaml
+T: 3600.0
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+nodes_per_dongle: 4
+use_T4_best: true
+nodes_list: [2, 4, 6, 8, 10, 12]
+bytes_list: [17, 127, 244]
+# 每個配置的連線雜訊（每個 event 的失敗率）用 Fig.12 的 σ²100 校正（獨立失敗，不用突發）
+per: {enabled: true, good: 0.0, bad: 0.0, p_g2b: 0.0, length_scaling: false}
+pauses: {enabled: true}
+calib_p_grid: [0.0, 0.01, 0.02, 0.04, 0.07, 0.10, 0.14, 0.19, 0.25]
+# 量測（F 類）模型
+noise_v_grid: [0.0, 0.01, 0.02, 0.03, 0.04, 0.06]    # ADC 雜訊（訊號振幅 0.5 V）
+afe_delay_sd_s: 0.15e-3      # F3：30 Hz 高通 ±5 % 元件誤差在 5 Hz 的相位延遲差（一階）
+dongle_path_sd_s: 0.1e-3     # D：不同 dongle 路徑的固定差【推測】
+# V4（假說）：ADC 雜訊隨封包長度增加（BLE 發射脈衝耦合進高增益 EMG 前端）＋ 較小的 AFE 差；在穩態（第 2–6 段）格點搜尋
+v4_noise_len_v: [0.005, 0.01, 0.015, 0.02]   # 244 B 時額外的雜訊 (V)，∝ 封包長度
+v4_afe_sd_s: [0.0, 0.05e-3, 0.1e-3, 0.15e-3]

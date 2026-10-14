@@ -1,0 +1,21 @@
+test: T9
+name: T9_sensitivity
+# SharkTooth 參數敏感度（同一份模擬資料跑不同參數）
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+n_nodes: 4
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+grid:
+  M: [20, 50, 100, 200]
+  lam_max: [0.2, 0.5, 0.8]
+  g1_inc: [1.0e-7, 1.0e-6, 1.0e-5]
+  settle_s: [5.0, 10.0, 30.0, 60.0]
+  keep_last: [false, true]
+# 封包率測試：f_s = 100 Hz，每包 20 / 10 / 5 樣本 → 5 / 10 / 20 Hz；
+# 20 Hz（50 ms）超過「每 2 個 CI 一包」的流量上限，所以這組用 window = 2
+rate_test:
+  period_nom: [0.2, 0.1, 0.05]
+  fs: 100.0
+  window: 2
+  g1_inc: [1.0e-7, 1.0e-6, 1.0e-5]

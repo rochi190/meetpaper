@@ -1,0 +1,26 @@
+test: T3
+name: T3_fig4
+# 復現 Fig.4（雜訊）：T1 + C3（Gilbert–Elliott）+ E2（共同模式停頓）
+base: T1_fig3.yaml
+T: 600.0
+seeds: [0, 1]
+clock_node: {rho_ppm: -235.0}         # Fig.4 斜率 235 ppm
+clock_adc: {period_err_ppm: 6400.0}   # Fig.4 封包間隔 100.64 ms
+os: {median_s: 0.001}
+per: {enabled: true, ref_bytes: 244}
+pauses: {enabled: true, min_s: 0.005, max_s: 0.080}
+sweep:
+  per.good: [0.01, 0.03, 0.1]
+  per.bad: [0.3, 0.6, 0.9]
+  per.mean_bad_events: [1, 3, 10]
+  spike_prob: [0.001, 0.01, 0.03]      # 每包的機率 → 停頓發生率 = spike_prob × 10 Hz
+  per.p_g2b: [0.005, 0.02]             # 規格沒指定「進入壞狀態」的機率，補一個維度
+# 規格的格點太粗（最佳 σ100 只到 31 ms）→ 在最佳點附近做隨機搜尋（加寬 p_g2b 與 per_bad 範圍）
+refine:
+  n: 800
+  ranges:
+    per.good: [0.0, 0.15]
+    per.bad: [0.5, 1.0]
+    per.mean_bad_events: [1.5, 15]
+    per.p_g2b: [0.005, 0.08]
+    spike_prob: [0.0, 0.03]

@@ -1,0 +1,9 @@
+test: T7
+name: T7_integrity
+# 資料完整性錯誤：原版 SharkTooth vs 先做 §7 完整性檢查
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+n_nodes: 1
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+tilt_ppm: 100.0          # T7e 的修正：預先加 +100 ppm 的斜率

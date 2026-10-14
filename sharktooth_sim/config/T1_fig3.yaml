@@ -1,0 +1,15 @@
+test: T1
+name: T1_fig3
+# 復現 Fig.3（最小延遲）：單節點，A1 + C1 + D3 + E1（小）；關 C3、E2
+T: 3600.0
+seeds: [0, 1, 2, 3, 4]
+n_nodes: 1
+clock_node: {rho_ppm: -245.0}          # 讓 δT 斜率 ≈ 245 ppm（T0 量到 245 ppm；遠超 ±20 ppm，見 T5 的 A8 討論）
+clock_pc: {rho_ppm: 0.0}
+clock_adc: {period_err_ppm: 9300.0}    # Fig.3 封包間隔 100.93 ms（T0）
+per: {enabled: false}
+pauses: {enabled: false}
+startup: {enabled: false}
+os: {median_s: 0.001}
+sweep:
+  os.median_s: [0.0002, 0.001, 0.002, 0.005]

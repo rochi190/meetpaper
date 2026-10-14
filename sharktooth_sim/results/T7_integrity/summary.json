@@ -1,0 +1,767 @@
+[
+ {
+  "name": "對照（無錯誤）",
+  "group": "ref",
+  "原版（論文字面）": {
+   "p95_ms": 0.315405,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008889,
+   "bad_total": 0.008889,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.335279
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.315405,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008889,
+   "bad_total": 0.008889,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.335279
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.315405,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008889,
+   "bad_total": 0.008889,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.335279
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.321028,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008819,
+   "bad_total": 0.008819,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.350801
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7a 掉包 0.1 %",
+  "group": "T7a",
+  "原版（論文字面）": {
+   "p95_ms": 0.290337,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008899,
+   "bad_total": 0.008899,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.326135
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.290337,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008899,
+   "bad_total": 0.008899,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.326135
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.290337,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008899,
+   "bad_total": 0.008899,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.326135
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.312442,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008828,
+   "bad_total": 0.008828,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.338287
+  },
+  "detected": {
+   "lost": 35.65,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 35.65,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7a 掉包 1 %",
+  "group": "T7a",
+  "原版（論文字面）": {
+   "p95_ms": 0.356479,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.00898,
+   "bad_total": 0.00898,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.406099
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.356479,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.00898,
+   "bad_total": 0.00898,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.406099
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.356479,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.00898,
+   "bad_total": 0.00898,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.406099
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.362118,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008882,
+   "bad_total": 0.008882,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.423045
+  },
+  "detected": {
+   "lost": 362.7,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 362.7,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7a 掉包 5 %",
+  "group": "T7a",
+  "原版（論文字面）": {
+   "p95_ms": 0.301189,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009001,
+   "bad_total": 0.009001,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.324389
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.301189,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009001,
+   "bad_total": 0.009001,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.324389
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.301189,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009001,
+   "bad_total": 0.009001,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.324389
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.324244,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008872,
+   "bad_total": 0.008872,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.370726
+  },
+  "detected": {
+   "lost": 1780.5,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 1780.55,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7a 斷線 1 次 × 5 s（t = 1800 s）",
+  "group": "T7a",
+  "原版（論文字面）": {
+   "p95_ms": 0.335802,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009114,
+   "bad_total": 0.009114,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.401609
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.335802,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009114,
+   "bad_total": 0.009114,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.401609
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.335802,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009114,
+   "bad_total": 0.009114,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.401609
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.341661,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008819,
+   "bad_total": 0.008819,
+   "n_pivot": 7.0,
+   "p95_all_ms": 0.445991
+  },
+  "detected": {
+   "lost": 59.9,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 59.9,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7b buffer 讀錯 0.1 %，f_s = 50 Hz",
+  "group": "T7b",
+  "原版（論文字面）": {
+   "p95_ms": 2.502368,
+   "gross_frac": 0.00112,
+   "invalid_frac": 0.009098,
+   "bad_total": 0.010149,
+   "n_pivot": 8.0,
+   "p95_all_ms": 2.810704
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 2.502368,
+   "gross_frac": 0.00112,
+   "invalid_frac": 0.009043,
+   "bad_total": 0.010064,
+   "n_pivot": 8.0,
+   "p95_all_ms": 2.800801
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.271085,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009043,
+   "bad_total": 0.009043,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.298363
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.271185,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008973,
+   "bad_total": 0.008973,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.298466
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 38.5,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 38.5
+ },
+ {
+  "name": "T7b buffer 讀錯 0.5 %，f_s = 50 Hz",
+  "group": "T7b",
+  "原版（論文字面）": {
+   "p95_ms": 4.334519,
+   "gross_frac": 0.005067,
+   "invalid_frac": 0.009463,
+   "bad_total": 0.014544,
+   "n_pivot": 8.0,
+   "p95_all_ms": 4.651606
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 4.334303,
+   "gross_frac": 0.005095,
+   "invalid_frac": 0.009098,
+   "bad_total": 0.014292,
+   "n_pivot": 8.0,
+   "p95_all_ms": 4.636086
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.278328,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009043,
+   "bad_total": 0.009043,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.306257
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.279485,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008973,
+   "bad_total": 0.008973,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.306258
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 179.2,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 179.2
+ },
+ {
+  "name": "T7b buffer 讀錯 0.1 %，f_s = 1000 Hz",
+  "group": "T7b",
+  "原版（論文字面）": {
+   "p95_ms": 0.304897,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.326282
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.304897,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.326282
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.303245,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.32162
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.333043,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009057,
+   "bad_total": 0.009057,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.352825
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 34.65,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 34.65
+ },
+ {
+  "name": "T7b buffer 讀錯 0.5 %，f_s = 1000 Hz",
+  "group": "T7b",
+  "原版（論文字面）": {
+   "p95_ms": 0.307676,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.379653
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.307676,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.379653
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.294743,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009267,
+   "bad_total": 0.009267,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.35462
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.326328,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009057,
+   "bad_total": 0.009057,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.368428
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 177.45,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 177.45
+ },
+ {
+  "name": "T7c 重複封包 1 %",
+  "group": "T7c",
+  "原版（論文字面）": {
+   "p95_ms": 0.313406,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008815,
+   "bad_total": 0.008815,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.326989
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.313406,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008815,
+   "bad_total": 0.008815,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.326989
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.315219,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008815,
+   "bad_total": 0.008815,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.335029
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.320905,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008815,
+   "bad_total": 0.008815,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.350136
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 357.75
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7c 重複封包 5 %",
+  "group": "T7c",
+  "原版（論文字面）": {
+   "p95_ms": 0.316442,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.0088,
+   "bad_total": 0.0088,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.353312
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.316442,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.0088,
+   "bad_total": 0.0088,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.353312
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.314419,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.0088,
+   "bad_total": 0.0088,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.33445
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.320524,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008794,
+   "bad_total": 0.008794,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.347551
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 1796.25
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7d 重開機（t = 1800 s，2 s 無資料）",
+  "group": "T7d",
+  "原版（論文字面）": {
+   "p95_ms": 0.453588,
+   "gross_frac": 0.490798,
+   "invalid_frac": 0.0179,
+   "bad_total": 0.508691,
+   "n_pivot": 8.0,
+   "p95_all_ms": 1801893.753176
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.448688,
+   "gross_frac": 0.499734,
+   "invalid_frac": 0.00895,
+   "bad_total": 0.508691,
+   "n_pivot": 8.0,
+   "p95_all_ms": 1801893.723857
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.381226,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.018152,
+   "bad_total": 0.018152,
+   "n_pivot": 12.5,
+   "p95_all_ms": 0.518651
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.523848,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.017998,
+   "bad_total": 0.017998,
+   "n_pivot": 12.0,
+   "p95_all_ms": 0.697794
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 1.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7d 計時器溢位（31 位元 µs，約 2147 s 繞回）",
+  "group": "T7d",
+  "原版（論文字面）": {
+   "p95_ms": 0.396526,
+   "gross_frac": 0.394398,
+   "invalid_frac": 0.017806,
+   "bad_total": 0.412206,
+   "n_pivot": 8.0,
+   "p95_all_ms": 2148003.390723
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.398058,
+   "gross_frac": 0.403317,
+   "invalid_frac": 0.008889,
+   "bad_total": 0.412206,
+   "n_pivot": 8.0,
+   "p95_all_ms": 2148003.37984
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.315405,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008889,
+   "bad_total": 0.008889,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.335279
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.321028,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.008819,
+   "bad_total": 0.008819,
+   "n_pivot": 7.5,
+   "p95_all_ms": 0.350801
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 1.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7e 漂移 α = -20 ppm",
+  "group": "T7e",
+  "原版（論文字面）": {
+   "p95_ms": 0.826984,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.81878,
+   "bad_total": 0.81878,
+   "n_pivot": 183.0,
+   "p95_all_ms": null
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 4.974947,
+   "gross_frac": 0.014796,
+   "invalid_frac": 0.018519,
+   "bad_total": 0.039335,
+   "n_pivot": 183.0,
+   "p95_all_ms": 7.771198
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.826984,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.81878,
+   "bad_total": 0.81878,
+   "n_pivot": 183.0,
+   "p95_all_ms": null
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.281764,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009785,
+   "bad_total": 0.009785,
+   "n_pivot": 9.0,
+   "p95_all_ms": 0.309671
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7e 漂移 α = -5 ppm",
+  "group": "T7e",
+  "原版（論文字面）": {
+   "p95_ms": 0.910274,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.414539,
+   "bad_total": 0.414539,
+   "n_pivot": 69.5,
+   "p95_all_ms": null
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 1.422636,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.012669,
+   "bad_total": 0.013354,
+   "n_pivot": 69.5,
+   "p95_all_ms": 1.6398
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.910274,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.414539,
+   "bad_total": 0.414539,
+   "n_pivot": 69.5,
+   "p95_all_ms": null
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.270635,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009715,
+   "bad_total": 0.009715,
+   "n_pivot": 8.5,
+   "p95_all_ms": 0.302556
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7e 漂移 α = +5 ppm",
+  "group": "T7e",
+  "原版（論文字面）": {
+   "p95_ms": 0.292128,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.017232,
+   "bad_total": 0.017232,
+   "n_pivot": 11.0,
+   "p95_all_ms": 0.390777
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.333744,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.012669,
+   "bad_total": 0.012669,
+   "n_pivot": 11.0,
+   "p95_all_ms": 0.389163
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.292128,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.017232,
+   "bad_total": 0.017232,
+   "n_pivot": 11.0,
+   "p95_all_ms": 0.390777
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.282731,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009715,
+   "bad_total": 0.009715,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.310507
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ },
+ {
+  "name": "T7e 漂移 α = +20 ppm",
+  "group": "T7e",
+  "原版（論文字面）": {
+   "p95_ms": 0.30549,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.012164,
+   "bad_total": 0.012164,
+   "n_pivot": 9.5,
+   "p95_all_ms": 0.351454
+  },
+  "原版 + 保留 α、β": {
+   "p95_ms": 0.30549,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.011534,
+   "bad_total": 0.011534,
+   "n_pivot": 9.5,
+   "p95_all_ms": 0.351454
+  },
+  "完整性檢查 + SharkTooth": {
+   "p95_ms": 0.30549,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.012164,
+   "bad_total": 0.012164,
+   "n_pivot": 9.5,
+   "p95_all_ms": 0.351454
+  },
+  "完整性檢查 + 保留 + 預傾斜 100 ppm": {
+   "p95_ms": 0.268743,
+   "gross_frac": 0.0,
+   "invalid_frac": 0.009589,
+   "bad_total": 0.009589,
+   "n_pivot": 8.0,
+   "p95_all_ms": 0.300852
+  },
+  "detected": {
+   "lost": 0.0,
+   "n_reset": 0.0,
+   "n_wrap": 0.0,
+   "n_buf": 0.0,
+   "n_dup": 0.0
+  },
+  "true_lost": 0.0,
+  "true_buf": 0.0
+ }
+]

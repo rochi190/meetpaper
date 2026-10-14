@@ -33,6 +33,13 @@
 
 ---
 
+## SharkTooth 復現模擬與測試
+
+依《SharkTooth 復現模擬：延遲來源整理與測試規格》完成的模擬器與 T0–T9 測試，放在 [`sharktooth_sim/`](sharktooth_sim/)。
+結論總表：[`sharktooth_sim/results/README.md`](sharktooth_sim/results/README.md)；論文圖與模擬並排：`sharktooth_sim/results/fig_compare.png`。
+
+---
+
 ## 目錄結構
 
 ```
@@ -41,6 +48,7 @@ meetpaper/
 ├── A generic non-invasive neuromotor .pdf
 ├── SASG-DA_Sparse-Aware_Semantic-Guided_Diffusion_Augmentation_for_Myoelectric_Gesture_Recognition.pdf
 ├── SharkTooth_A_Scalable_Real-Time_Algorithm_for_BLE-Based_Wireless_Body_Sensor_Networks_Synchronization.pdf
+├── sharktooth_sim/          # SharkTooth 復現模擬（模擬器、設定檔、T0–T9 結果）
 ├── claude/
 │   ├── SASG-DA 導讀教材.pdf
 │   ├── SharkTooth 導讀教材.pdf

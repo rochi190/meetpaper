@@ -1,0 +1,13 @@
+test: T8
+name: T8_baselines
+# 與先前方法比較：同一份資料跑所有方法
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+methods: [tp_only, tc_only, ols_raw, ols_window, ols_trimmed, min_filter, lower_hull, sharktooth, sharktooth_ff, sharktooth_tilt]
+scenarios:
+  T4_相同:   {n_nodes: 4}
+  T4_不同:   {n_nodes: 4, per: {node_good_add: {0: 0.20}}, fw_delay: {node_max_override: {0: 0.010}}}
+  C12_相同:  {n_nodes: 12, packet: {bytes: 244}, per: {good: 0.225, bad: 0.0, p_g2b: 0.0}}
+  C12_不同:  {n_nodes: 12, packet: {bytes: 244}, per: {good: 0.225, bad: 0.0, p_g2b: 0.0, node_good_add: {0: 0.20}}, fw_delay: {node_max_override: {0: 0.010}}}
