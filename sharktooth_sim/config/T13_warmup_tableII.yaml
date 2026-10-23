@@ -1,0 +1,22 @@
+test: T13
+name: T13_warmup_tableII
+# 暖機能不能解釋 Table II / Fig.10–12「第 1 段（前 10 分鐘）比較大、之後收斂」？
+# T6 的 18 個配置，沿用 T6 的校正（每個配置的失敗率、V4 量測模型：results/T6_tableII/summary.json），只在節點時鐘加暖機。
+base: T6_tableII.yaml
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]   # 40：情境之間的差比抽樣誤差小
+physical_from: T12_temperature.yaml      # bench / body 的物理模型（ABS04W、自熱、皮膚溫度、PC 與 ADC 計時器溫度）
+
+scenarios:
+  "off": {label: 不加暖機（T6）}       # 加引號：YAML 會把 off 讀成 false
+  bench: {label: 桌上（物理模型）, phys: bench}
+  body: {label: 貼身（物理模型）, phys: body}
+  # 不管物理：每個節點的頻率在暖機時直接變 U(−X, +X) ppm，τ 3–10 min。用來找「要多大才看得出來」。
+  # 參考：ABS04W 在轉折溫度 25 °C 附近升溫 10 °C 只變約 3 ppm（−0.034 ppm/°C²）。
+  d3: {label: 每節點 ±3 ppm, drift_ppm: 3.0}
+  d10: {label: 每節點 ±10 ppm, drift_ppm: 10.0}
+  d30: {label: 每節點 ±30 ppm, drift_ppm: 30.0}
+warm_tau_s: {uniform: [180.0, 600.0]}
+
+paper_fig10_windows_s: [[120.0, 300.0], [300.0, 600.0]]   # Fig.10：這兩段相對最後 10 分鐘偏了多少
+paper_fig10_ref_s: [3000.0, 3600.0]

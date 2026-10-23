@@ -1,15 +1,32 @@
 """
 B 類：節點取樣、打時間戳、讀 buffer、打包、韌體延遲、重開機。
 
-取樣由 ADC 計時器驅動（clock_adc：其週期相對真實時間有 period_err_ppm 的誤差），
+取樣由 ADC 計時器驅動（clock_adc：其週期相對真實時間有 period_err_ppm 的誤差；
+開了節點溫度時，誤差再加上 temp_coeff_ppm_per_C × (T − T_start)，RC 振盪器隨板子溫度變），
 時間戳 t_P 由 32.768 kHz 晶振時鐘（clock_node）讀出。
 """
 from __future__ import annotations
 
 import numpy as np
 
-from .clocks import node_clock
+from .clocks import draw_temp, node_clock
 from .config import draw
+
+
+def adc_sample_times(start, T, fs, adc_err, tc_ppm, temperature):
+    """ADC 計時器的取樣時刻。週期誤差 e(t) = adc_err + tc·(T(t) − T(start))；溫度不變時退化成等間隔。"""
+    Ts = (1.0 / fs) * (1.0 + adc_err)
+    if not tc_ppm or temperature is None:
+        n = int((T - start) / Ts)
+        return start + Ts * (np.arange(n) + 1)      # 第一筆在開始後一個週期
+    g, Tc = temperature
+    m = g >= start
+    g = np.r_[start, g[m]]
+    Tc = np.r_[np.interp(start, *temperature), Tc[m]]
+    rate = fs / (1.0 + adc_err + tc_ppm * 1e-6 * (Tc - Tc[0]))
+    phase = np.r_[0.0, np.cumsum(0.5 * (rate[1:] + rate[:-1]) * np.diff(g))]
+    n = int(np.interp(T, g, phase))
+    return np.interp(np.arange(1, n + 1), phase, g)
 
 
 def make_node(cfg, node_id, rng):
@@ -19,15 +36,19 @@ def make_node(cfg, node_id, rng):
     N = int(round(fs * pk["period_nom"]))            # 每包樣本數（50 Hz × 0.1 s = 5）
     cn = dict(cfg["clock_node"])
     if cn.get("temp") and cn["temp"].get("enabled"):
-        cn["temp"] = {k: (float(draw(v, rng)) if k != "enabled" else v) for k, v in cn["temp"].items()}
-    rho = float(draw(cn["rho_ppm"], rng))
+        cn["temp"] = draw_temp(cn["temp"], rng)
+    # rho_list / period_err_list：每個節點指定值（T11 用；組合誤差在實驗端先算好）
+    rho = float(cn["rho_list"][node_id]) if cn.get("rho_list") is not None else float(draw(cn["rho_ppm"], rng))
     start = float(draw(cn["start_s"], rng))
     clk = node_clock(cn, T, rho, start, rng)
-    adc_err = float(draw(cfg["clock_adc"]["period_err_ppm"], rng)) * 1e-6
-    Ts = (1.0 / fs) * (1.0 + adc_err)                # 真實取樣週期
-
-    n_samp = int((T - start) / Ts)
-    t_samp = start + Ts * (np.arange(n_samp) + 1)    # 第一筆在開始後一個週期
+    ca = cfg["clock_adc"]
+    adc_err = (float(ca["period_err_list"][node_id]) if ca.get("period_err_list") is not None
+               else float(draw(ca["period_err_ppm"], rng))) * 1e-6
+    Ts = (1.0 / fs) * (1.0 + adc_err)                # 真實取樣週期（開始時）
+    tc = ca.get("temp_coeff_ppm_per_C")
+    tc = float(draw(tc, rng)) if (tc is not None and getattr(clk, "temperature", None) is not None) else 0.0
+    t_samp = adc_sample_times(start, T, fs, adc_err, tc, getattr(clk, "temperature", None))
+    n_samp = t_samp.size
 
     # B5 重開機：重開機期間沒有樣本；之後節點時鐘從 0 重來
     epoch = np.zeros(n_samp, dtype=np.int64)
@@ -101,7 +122,7 @@ def make_node(cfg, node_id, rng):
         pkt_id[m] = np.arange(m.sum())
 
     return dict(
-        node_id=node_id, clock=clk, temp=cn.get("temp"), rho_ppm=rho, start_s=start, adc_err_ppm=adc_err * 1e6, Ts=Ts, N=N,
+        node_id=node_id, clock=clk, temp=cn.get("temp"), rho_ppm=rho, start_s=start, adc_err_ppm=adc_err * 1e6, adc_tc_ppm=tc, Ts=Ts, N=N,
         t_samp=t_samp, tp_samp=tp_samp, epoch=epoch,
         first_idx=first_idx, last_idx=last_idx, n_samples=n_samples,
         tP=tP, t_ready=t_ready, t_true_last=t_samp[last_idx], pkt_id=pkt_id, buf_err=buf_err,

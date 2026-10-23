@@ -1,0 +1,50 @@
+test: T11
+name: T11_drift_combos
+# δT 的 +235～+245 ppm 斜率可能是哪些誤差組合出來的？
+# 每個候選誤差都有出處（README 的因素表）；每個節點的時鐘誤差在一次擷取內固定（不隨封包亂跳），
+# 只有「哪一顆晶振、哪一塊板子」是隨機抽的。
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+n_nodes: 4
+seeds: [0, 1, 2, 3, 4, 5, 6, 7]
+n_mc: 20000                          # 斜率分布的解析抽樣次數（不跑 BLE）
+
+paper:
+  slope_ppm: [230.0, 250.0]          # T0：Fig.3 / 4 / 6 = 245 / 235 / 244 ppm，含約 ±5 ppm 量測誤差
+  interval_ms: [100.6, 101.0]        # T0：100.93 / 100.64 / 100.78 ms（以 t_P 計）
+  resid_ms: {P50: 18.0, P90: 32.2}   # T0：Fig.6 殘差（對下緣線）
+  sigma100_ms: [14.23, 14.75]        # T0：Fig.3c
+  seg6_ms: 0.35                      # Table II，C4 第 6 段 mean|RSE|
+
+crystal:                             # ABS04W 規格書（Abracon，rev. 03-04-24）
+  tol_ppm: 20.0                      # 出廠誤差（在規格負載下），均勻分布
+  CL_spec_pF: 4.0                    # 規格負載電容
+  C0_pF: [1.5, 2.0]                  # 並聯電容，均勻
+  C1_fF: [6.5, 0.65]                 # 動態電容，常態（典型 6.5 fF，假設 ±10 %）
+  CL_board_sd_pF: 0.2                # 板與板之間的雜散電容差（假設）
+adc_err_ppm: [6400.0, 9300.0]        # ADC 取樣計時器比真實時間慢的量（T0 由封包間隔反推）
+
+levels:
+  pull:                              # 板子上實際的有效負載電容 (pF) = (3.4 內建 + 1.0 雜散 + 外接) / 2
+    nocap: 2.2                       # 不接外部電容（Apollo3 規格書說不需要）
+    matched: 4.0                     # 剛好等於晶振規格
+    ext7: 5.7                        # 每腳外接 7 pF（Apollo3 允許的上限）
+    CL8: 8.0                         # 對上論文斜率所需（約每腳外接 12 pF）
+    ext15: 9.7                       # 每腳外接 15 pF（SparkFun Artemis 參考設計，配 12.5 pF 晶振）
+  conv:                              # 韌體 tick → 時間的換算常數誤差 (ppm)
+    exact: 0.0
+    t30.51us: -248.3                 # 30.51 / 30.517578 − 1
+    t30.5us: -576.0                  # 30.5 / 30.517578 − 1
+  src: [xt, hfadj, hfrc, lfrc]       # t_P 的時鐘源
+  pc:
+    ntp: {rho: {normal: [0.0, 2.0]}, res: 1.0e-6, slew: false}
+    ntp_15ms: {rho: {normal: [0.0, 2.0]}, res: 0.015625, slew: false}
+    qpc: {rho: {uniform: [-50.0, 50.0]}, res: 1.0e-6, slew: false}
+    ntp_slew: {rho: {normal: [0.0, 2.0]}, res: 1.0e-6, slew: true}
+    pc_bad: {rho: {uniform: [-300.0, 300.0]}, res: 1.0e-6, slew: false}
+
+hfadj_ppm: -576.0                    # HFRC 鎖在 XT × 1464（Apollo3 規格書 §12.1.5：48 MHz 的最佳 HFXTADJ = 1464；1464 × 32768 = 47.972 MHz）
+lfrc_ppm: 30000.0                    # RC 振盪器 ±3 %（假設；規格書沒給 LFRC 精度，只說變異大、校正範圍 ±25 %；任何 > 0.1 % 的值結論都一樣）
+slew: {per_hour: 3, offset_ms: 50.0, dur_s: [60.0, 600.0]}   # w32time / NTP 調速（假設）
+bad_err_s: 0.010

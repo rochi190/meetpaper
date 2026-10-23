@@ -3,10 +3,11 @@ A 類：時鐘模型。
 
 clock(t) = θ + ∫_0^t (1 + ρ(τ)) dτ，ρ(t) = ρ_0 + ρ_temp(T(t)) + ρ_rw(t)
   - A1 ρ_0：晶振出廠誤差
-  - A2 ρ_temp = k (T − T0)²，k = −0.034 ppm/°C²（Raltron R38）
-  - A3 暖機：T(t) = T_end − (T_end − T_start) e^(−t/τ)
+  - A2 ρ_temp = k (T − T0)²（音叉晶振；ABS04W：k = −0.02～−0.04 ppm/°C²、T0 = 20～30 °C）
+         + k1 (T − T_start)（線性項：PC 的 AT-cut 晶振在室溫附近約 ±0.5 ppm/°C，Murdoch 2006）
+  - A3 暖機：T(t) = T_end − (T_end − T_start) e^(−t/τ) + 環境溫度起伏 A sin(2πt/P + φ)
   - A5 隨機漫步
-  - A6 PC 時鐘：常數 ρ + NTP 跳時（step）/ 調速（slew）
+  - A6 PC 時鐘：常數 ρ + 溫度（同 A2/A3 的形式）+ NTP 跳時（step）/ 調速（slew）
   - A7 量化（32.768 kHz tick）
   - A8 tick→時間換算誤差：讀數 × (1 + e)
   - A10 溢位：讀數以 unit 為單位存成 bits 位元，繞回
@@ -15,6 +16,24 @@ clock(t) = θ + ∫_0^t (1 + ρ(τ)) dτ，ρ(t) = ρ_0 + ρ_temp(T(t)) + ρ_rw(
 from __future__ import annotations
 
 import numpy as np
+
+from .config import draw
+
+
+def draw_temp(temp, rng):
+    """溫度設定的每個數值欄位各抽一次（分布 → 數字）；沒開就回傳 None，不消耗亂數。"""
+    if not (temp and temp.get("enabled")):
+        return None
+    return {k: (float(draw(v, rng)) if k != "enabled" else v) for k, v in temp.items()}
+
+
+def temperature_curve(temp, g):
+    """A3 暖機 + 環境溫度起伏。T_end 沒給時用 T_start + dT_C。"""
+    T_end = temp.get("T_end", temp["T_start"] + temp.get("dT_C", 0.0))
+    Tc = T_end - (T_end - temp["T_start"]) * np.exp(-np.maximum(g, 0) / temp["tau_s"])
+    if temp.get("amb_amp_C"):
+        Tc = Tc + temp["amb_amp_C"] * np.sin(2 * np.pi * g / temp["amb_period_s"] + temp.get("amb_phase", 0.0))
+    return Tc
 
 
 class Clock:
@@ -32,8 +51,9 @@ class Clock:
             g = np.arange(t_min, T + 10.0 + dt_grid, dt_grid)
             rho = np.full(g.size, self.rho0)
             if temp and temp.get("enabled"):
-                Tc = temp["T_end"] - (temp["T_end"] - temp["T_start"]) * np.exp(-np.maximum(g, 0) / temp["tau_s"])
-                rho += temp["k_ppm_per_C2"] * 1e-6 * (Tc - temp["T0"]) ** 2
+                Tc = temperature_curve(temp, g)
+                rho += temp.get("k_ppm_per_C2", 0.0) * 1e-6 * (Tc - temp.get("T0", 25.0)) ** 2
+                rho += temp.get("k1_ppm_per_C", 0.0) * 1e-6 * (Tc - temp["T_start"])
                 self.temperature = (g, Tc)
             if rw and rw.get("enabled"):
                 sd = rw["ppm_per_sqrt_hour"] * 1e-6 * np.sqrt(dt_grid / 3600.0)

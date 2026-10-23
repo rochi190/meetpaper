@@ -14,7 +14,7 @@ python run_test.py config/T4_fig6.yaml       # 單一測試
 python -m pytest tests -q                    # 正確性測試（SharkTooth 兩種實作一致、下凸包 = LP、快速互相關 = 逐 lag 互相關）
 ```
 
-T5–T9 會讀 `results/T4_fig6/summary.json` 的擬合參數，所以要先跑 T4。
+T5–T13 會讀 `results/T4_fig6/summary.json` 的擬合參數，所以要先跑 T4。
 
 ## 目錄（規格 §4.1）
 

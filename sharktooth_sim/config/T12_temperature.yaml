@@ -1,0 +1,50 @@
+test: T12
+name: T12_temperature
+# 溫度造成的漂移：晶振暖機（A2/A3）＋ 環境溫度起伏、PC 時鐘溫度（A6）、ADC 計時器（RC）溫度（B6）。
+# 其餘和論文相符的設定一樣（T4 擬合的延遲參數 + T11 組合 (a)：換算 30.51 µs、晶振 ±20 ppm）；只改溫度。
+# 同一個房間：室溫與空調起伏每次擷取抽一次，所有節點和 PC 共用；自熱、暖機快慢每個節點各自抽。
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+n_nodes: 4
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+bad_err_s: 0.010
+forget_values: [1.0, 0.9999]
+
+paper:                                   # 對照
+  slope_ppm: [230.0, 250.0]              # T0
+  interval_ms: [100.6, 101.0]            # T0
+  resid_ms: {P50: 18.0, P90: 32.2}       # T0，Fig.6
+  # 論文圖中封包間隔在約 2 分鐘內的變化：T12 直接從 data/digitized 量（二次擬合 + 區塊自助法），這裡只給時間窗
+  windows_s: {fig6: [5.1, 144.4], fig3: [2891.2, 3017.3], fig4: [3367.8, 3493.9]}
+  digitized: {fig6: fig6_dots, fig3: fig3a_line, fig4: fig4a_line}
+
+room:
+  T_C: {uniform: [21.0, 25.0]}           # 室溫（假設）
+  amb_amp_C: 0.5                         # 空調起伏振幅（假設：一般溫控 ±0.5 °C）
+  amb_period_s: {uniform: [1200.0, 2400.0]}
+
+crystal:                                 # ABS04W 規格書：溫度係數 −0.04～−0.02 ppm/°C²（典型 −0.03）、轉折溫度 20～30 °C
+  k_ppm_per_C2: {uniform: [-0.04, -0.02]}
+  T0: {uniform: [20.0, 30.0]}
+
+# ADC 計時器（RC）溫度係數：48 MHz RC 在 −40～125 °C 內約 ±4 %（Microchip OSC48M）→ 平均數百 ppm/°C；
+# Apollo3 規格書只說 HFRC「典型 ±2 % 變異，溫度變化大時更明顯」。正負號未知。
+adc_temp_coeff_ppm_per_C: {uniform: [-300.0, 300.0]}
+
+pc:                                      # Murdoch 2006（ACM CCS）：AT-cut 晶振在室溫附近約 0.5 ppm/°C，
+  k1_ppm_per_C: {uniform: [-0.6, 0.6]}   # 正負都觀察到（有的 PC 會過度補償）
+  dT_C: {uniform: [1.0, 5.0]}            # CPU 負載讓 PC 升溫：Tor 負載 1–1.5 °C、CPUBurn 5 °C
+  tau_s: {uniform: [300.0, 1200.0]}      # 假設：數分鐘到二十分鐘
+
+scenarios:
+  bench:                                 # 論文的驗證：板子放桌上、Arduino 5 V 供電、不貼身
+    label: 桌上（論文驗證）
+    node: {dT_C: {uniform: [0.5, 2.0]}, tau_s: {uniform: [180.0, 600.0]}}   # 自熱（假設：板子功耗約 10–20 mW）
+  body:                                  # 實際應用：貼在皮膚上
+    label: 貼身穿戴
+    node: {T_end: {uniform: [31.0, 34.0]}, tau_s: {uniform: [180.0, 600.0]}}  # 皮膚溫度；貼身裝置約 5–10 分鐘達穩態
+  bench_ms:                              # 論文資料的 t_P 是整數毫秒（Fig.3 / 4 相鄰差 100 % 落在整數 ms，見 README）
+    label: 桌上 + t_P 整數毫秒
+    base: bench
+    tick_hz: 1000.0

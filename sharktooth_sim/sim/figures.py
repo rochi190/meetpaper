@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
 plt.rcParams.update({
-    "font.family": ["DejaVu Sans", "WenQuanYi Zen Hei"],   # 西文 / 數學用 DejaVu，中文自動退回文泉驛
+    "font.family": ["DejaVu Sans", "WenQuanYi Zen Hei", "Noto Sans TC"],   # 西文 / 數學用 DejaVu，中文自動退回文泉驛（沒裝就用 Noto Sans TC）
     "axes.unicode_minus": False,
     "mathtext.fontset": "dejavusans",
     "axes.formatter.use_mathtext": False,

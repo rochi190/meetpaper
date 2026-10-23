@@ -33,16 +33,19 @@ DEFAULTS = {
         "tick_hz": 32768.0,                       # A7 量化（None/0 = 不量化）
         "scale_err_ppm": 0.0,                     # A8 tick→時間換算誤差
         "temp": {"enabled": False, "T_start": 23.0, "T_end": 33.0, "tau_s": 300.0,
-                 "T0": 25.0, "k_ppm_per_C2": -0.034},   # A2 + A3
+                 "T0": 25.0, "k_ppm_per_C2": -0.034},   # A2 + A3；另可加 dT_C（取代 T_end）、k1_ppm_per_C、
+                                                         # 環境起伏 amb_amp_C / amb_period_s / amb_phase（見 clocks.py）
         "rw": {"enabled": False, "ppm_per_sqrt_hour": 0.05},  # A5 隨機漫步
         "wrap": {"enabled": False, "bits": 32, "unit": 1e-6},  # A10 溢位
     },
     # ADC / 取樣計時器的時鐘（決定實際封包週期）。T0 發現論文資料的封包間隔是 100.64–100.93 ms（以 t_P 計），
     # 即取樣計時器比 32.768 kHz 晶振慢 0.6–0.9 %（【推測】來自 HFRC 衍生的 ADC 計時器）
-    "clock_adc": {"period_err_ppm": {"uniform": [6400.0, 9300.0]}},
+    "clock_adc": {"period_err_ppm": {"uniform": [6400.0, 9300.0]},
+                  "temp_coeff_ppm_per_C": None},    # B6：RC 計時器的溫度係數（要開節點溫度才有作用）
     "clock_pc": {
         "rho_ppm": {"uniform": [-50.0, 50.0]},    # A6
         "tc_resolution": 1e-6,                    # E4
+        "temp": {"enabled": False},               # A6 溫度：欄位同 clock_node.temp，通常只用 k1_ppm_per_C
         "ntp_steps": [],                          # [[t, step_s], ...]
         "ntp_slews": [],                          # [[t0, t1, ppm], ...]
     },

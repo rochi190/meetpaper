@@ -13,7 +13,7 @@ from __future__ import annotations
 import numpy as np
 
 from . import central, host, link, node
-from .clocks import Clock
+from .clocks import Clock, draw_temp
 from .config import draw
 
 
@@ -22,6 +22,7 @@ def simulate(cfg, seed):
     T = cfg["T"]
     cp = cfg["clock_pc"]
     pc = Clock(T, rho_ppm=float(draw(cp["rho_ppm"], rng)), theta=rng.uniform(1000, 2000), tick_hz=None,
+               temp=draw_temp(cp.get("temp"), rng),
                ntp_steps=cp.get("ntp_steps", []), ntp_slews=cp.get("ntp_slews", []), rng=rng)
     sched, dongles = central.schedule(cfg, rng)
     nodes = []
@@ -77,7 +78,8 @@ def simulate(cfg, seed):
             samples=dict(t_true=nd["t_samp"], tp=nd["tp_samp"], val=nd["signal"],
                          t_pc_true=pc.exact(nd["t_samp"]), epoch=nd["epoch"]),
             meta=dict(node_id=nd["node_id"], rho_ppm=nd["rho_ppm"], start_s=nd["start_s"],
-                      adc_err_ppm=nd["adc_err_ppm"], dongle=nd["dongle"], slot=nd["slot"],
+                      adc_err_ppm=nd["adc_err_ppm"], adc_tc_ppm=nd["adc_tc_ppm"], clock=nd["clock"],
+                      dongle=nd["dongle"], slot=nd["slot"],
                       anchor=sched[nd["node_id"]]["anchor"], ci=sched[nd["node_id"]]["ci"],
                       bad_frac=nd["bad_frac"], afe_delay_s=nd.get("afe_delay_s", 0.0),
                       first_idx=nd["first_idx"], last_idx=nd["last_idx"], reset_t=nd["reset_t"]),

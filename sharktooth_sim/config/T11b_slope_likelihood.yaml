@@ -1,0 +1,28 @@
+test: T11b
+name: T11b_slope_likelihood
+# T11 的五項檢查只問「斜率有沒有落在論文範圍」；這裡問「哪個組合最能解釋論文量到的三個斜率」。
+# 時鐘模型與 T11 相同：每個節點的誤差在一次擷取內固定，隨機的只有抽到哪顆晶振、哪塊板子、哪台 PC。
+base: T11_drift_combos.yaml
+obs_ppm: [245.0, 235.0, 244.0]       # T0：Fig.3 / 4 / 6 的 δT 下緣斜率
+meas_sd_ppm: 5.0                     # T0 的量測誤差（約 ±5 ppm）
+n_node: 200000                       # 每個組合抽幾個節點
+n_pc: 4000                           # 情境 A 對 PC 誤差平均時抽幾次
+extra_pull:                          # 常見電容值：每腳外接 10 / 12 pF → 有效負載 (3.4 + 1.0 + 外接) / 2
+  ext10: 7.2
+  ext12: 8.2
+candidates:                          # [t_P 時鐘源, 負載電容, 換算, PC 時鐘]；第一個是比較基準
+  - [xt, matched, t30.51us, ntp]
+  - [xt, matched, t30.51us, qpc]
+  - [xt, CL8, exact, ntp]
+  - [xt, CL8, exact, qpc]
+  - [xt, ext12, exact, ntp]
+  - [xt, ext12, exact, qpc]
+  - [xt, ext10, exact, ntp]
+  - [xt, ext10, exact, qpc]
+  - [xt, ext15, exact, ntp]
+  - [xt, ext15, exact, qpc]
+  - [hfadj, nocap, exact, ntp]
+  - [hfadj, nocap, exact, qpc]
+  - [xt, nocap, t30.5us, ntp]
+  - [xt, nocap, t30.5us, qpc]
+  - [xt, matched, exact, pc_bad]
