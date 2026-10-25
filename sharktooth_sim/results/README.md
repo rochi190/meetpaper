@@ -6,6 +6,7 @@
 ![論文 Fig.3 / 4 / 6 與模擬並排](fig_compare.png)
 
 **和論文相符那組設定的每個參數出處與合理性**：[provenance_paper_match.md](provenance_paper_match.md)。
+**模擬變因總表（每個測試開了哪些變因）**：[variables_matrix.md](variables_matrix.md)。
 
 ## 一覽
 
