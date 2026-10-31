@@ -3,13 +3,15 @@
 論文：Landra et al., *SharkTooth: A Scalable Real-Time Algorithm for BLE-Based WBSN Synchronization*, IEEE IoT-J 12(22), 2025。
 規格書：`docs/SharkTooth_模擬測試規格.md`；上一版模擬：`docs/ble_sim_v1.py`。
 
-**先看這兩個檔**：`results/README.md`（所有測試的結論總表）、`results/fig_compare.png`（論文 Fig.3 / 4 / 6 與模擬並排）。
+**第一次讀請看 `導讀.md`**（名詞、讀的順序、各測試在回答什麼）。
+
+**結論**：`results/README.md`（所有測試的結論總表）、`results/fig_compare.png`（論文 Fig.3 / 4 / 6 與模擬並排）。
 
 ## 執行
 
 ```bash
 pip install numpy scipy matplotlib numba pyyaml pymupdf pytest
-python run_test.py all                       # 全部（T0 → T9 → 交付物），4 核心約 25 分鐘
+python run_test.py all                       # 全部（T0 → T13 → 交付物）；T13 單獨約 20 分鐘（4 核心）
 python run_test.py config/T4_fig6.yaml       # 單一測試
 python -m pytest tests -q                    # 正確性測試（SharkTooth 兩種實作一致、下凸包 = LP、快速互相關 = 逐 lag 互相關）
 ```

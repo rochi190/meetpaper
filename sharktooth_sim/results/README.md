@@ -1,4 +1,4 @@
-# 測試結果總表（T0–T9）
+# 測試結果總表（T0–T13）
 
 依《SharkTooth 復現模擬：延遲來源整理與測試規格》（`../docs/SharkTooth_模擬測試規格.md`）執行。每個測試的設定、表格與圖在各自資料夾的 `README.md`。
 所有測試都是 ≥ 20 seeds（T1–T4 的擬合 / 掃描除外，見各 README）、3600 s。
@@ -58,7 +58,7 @@
 
 | 規格 | 檔案 |
 |---|---|
-| `results/<test>/`：圖、summary.json、結論 README | `T0_digitize/` … `T9_sensitivity/` |
+| `results/<test>/`：圖、summary.json、結論 README | `T0_digitize/` … `T13_warmup_tableII/` |
 | `results/fig_compare.png` | [fig_compare.png](fig_compare.png) |
 | `results/ablation_T4.md` | [ablation_T4.md](ablation_T4.md) |
 | `results/baselines_T8.md` | [baselines_T8.md](baselines_T8.md) |
