@@ -1,0 +1,47 @@
+test: T14
+name: T14_hardware
+# 實測（3 塊 B-L475E-IOT01A、PC 內建藍牙、20 B）和哪一組模擬比較像？
+# 同一套特徵（δT 斜率、封包間隔、延遲分布、σ100、起始尖峰、Table II 式 RSE）算在實測與三組模擬上。
+base: T4_fig6.yaml
+use_T4_best: true
+T: 3600.0
+n_nodes: 3
+nodes_per_dongle: 3                  # 三塊板子都連同一個 central（PC 內建藍牙）
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# 三組都用同一個 SharkTooth 版本（和 Hands_on/st_analyze.py 的預設一樣）：保留 α、β + 預傾斜 100 ppm
+sharktooth: {keep_last: true, tilt_ppm: 100.0}
+
+hardware_runs:                       # data/ 底下（從 Hands_on/ 複製的原始資料）；寫成路徑，否則會被讀成數字
+  - hardware/20261101_214202                 # 10 分鐘
+  - hardware/20261101_220025                 # 60 分鐘（Table II 式 RSE 只用這次）
+hardware_lse_hz: 32768.0
+
+scenarios:
+  paper:
+    label: 和論文相符（T4）
+    # T4 的設定原樣（A8 −248 ppm、PC 理想、封包間隔 100.78 ms、重傳 7.9 % + 突發、起始等待 102 ms、244 B），只改成 3 節點
+  physical:
+    label: 物理時鐘（T10）
+    # 同上，但拿掉 A8、PC 時鐘 ±50 ppm（= T10 physical、T11 的 [xt, matched, exact, qpc]）
+    clock_node: {scale_err_ppm: 0.0}
+    clock_pc: {rho_ppm: {uniform: [-50.0, 50.0]}}
+  hw:
+    label: 照實測條件
+    # 只放實測的已知條件，唯一調過的是重傳率
+    clock_node: {scale_err_ppm: 0.0}                          # 原始 tick ÷ 32768（st_receiver 傳原始 tick）
+    clock_pc: {rho_ppm: {uniform: [-50.0, 50.0]}}             # QueryPerformanceCounter（meta.json）
+    clock_adc: {period_err_ppm: {uniform: [-11500.0, -8200.0]}}   # 實測封包間隔 98.85–99.18 ms（TIM6 / MSI 比晶振快）
+    packet: {bytes: 20}
+    startup: {enabled: false}                                 # 實測前 10 包都在帶內，沒有起始尖峰
+    per: {enabled: true, good: 0.012, bad: 0.0, p_g2b: 0.0, length_scaling: false}
+    # 重傳率：用實測「> 1 CI 的比例」（1.4–1.8 %）反推；> 2 CI 只有 0.03 %，獨立失敗就夠，不需要突發
+  hw_lean:
+    label: 照實測條件 + 精簡 PC 端
+    base: hw
+    # 再拿掉實測沒有的層、縮小實測看不到的抖動（依實測的延遲分布調整，不是獨立預測）：
+    dongle: {enabled: false}                                  # 沒有 nRF52840 dongle（PC 內建藍牙）
+    serial: {enabled: false}                                  # 沒有 Blatann / pc-ble-driver 序列化
+    gil: {enabled: false}                                     # bleak 用 asyncio 單一迴圈，callback 很短
+    os: {median_s: 0.1e-3, per_node_scale: 0.0}               # PC 端喚醒延遲：實測下緣比論文平滑
+    fw_delay: {enabled: false}                                # 韌體打包抖動：實測的 P10 只比純等待多約 0.5 ms
+    per: {good: 0.014}                                        # 沒有韌體抖動時，> 1 CI 的比例只剩重傳本身 → 重新對一次（1.4–1.8 %）

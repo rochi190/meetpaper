@@ -1,0 +1,135 @@
+t_C,event,node,detail
+0.000013,t_C_zero,,程式開始後 16.943 s（搜尋 + 連線花的時間）
+-10.595519,connected,NODE_A,FD:09:CC:3D:AC:82
+-4.847769,connected,NODE_B,CA:5B:A9:42:0A:B2
+-0.000063,connected,NODE_C,F6:10:D4:4A:71:43
+0.000054,notify_request,NODE_A,
+0.055118,notify_on,NODE_A,
+0.055125,notify_request,NODE_B,
+0.116799,notify_on,NODE_B,
+0.116802,notify_request,NODE_C,
+0.134270,notify_on,NODE_C,
+5.139689,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=88.92 n_over_5ms=10
+10.141664,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.51 n_over_5ms=0
+15.147710,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=13.05 n_over_5ms=1
+20.149838,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.65 n_over_5ms=0
+25.154139,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.79 n_over_5ms=0
+30.158981,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=3.68 n_over_5ms=0
+35.163666,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=13.63 n_over_5ms=2
+40.166981,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.72 n_over_5ms=0
+45.170827,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=4.70 n_over_5ms=0
+50.179101,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.71 n_over_5ms=0
+55.179806,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.67 n_over_5ms=0
+60.180738,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=7.40 n_over_5ms=1
+65.182700,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.67 n_over_5ms=0
+70.189540,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.66 n_over_5ms=0
+75.192439,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=1.05 n_over_5ms=0
+80.198296,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=1.08 n_over_5ms=0
+85.206172,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=14.43 n_over_5ms=1
+90.206613,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.69 n_over_5ms=0
+95.210203,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=12.94 n_over_5ms=1
+100.214336,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.58 n_over_5ms=0
+105.222540,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.48 n_over_5ms=0
+110.223789,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.68 n_over_5ms=0
+115.224719,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.52 n_over_5ms=0
+120.227202,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=12.08 n_over_5ms=1
+125.232466,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.71 n_over_5ms=0
+130.235896,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.55 n_over_5ms=0
+135.237923,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.59 n_over_5ms=0
+140.248717,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.62 n_over_5ms=0
+145.255883,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.54 n_over_5ms=0
+150.263047,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.63 n_over_5ms=0
+155.265034,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=5.45 n_over_5ms=1
+160.271286,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.57 n_over_5ms=0
+165.274624,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=2.67 n_over_5ms=0
+170.277407,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.65 n_over_5ms=0
+175.278904,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.59 n_over_5ms=0
+180.287433,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.60 n_over_5ms=0
+185.290597,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=7.20 n_over_5ms=1
+190.300999,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=10.34 n_over_5ms=1
+195.301382,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=1.59 n_over_5ms=0
+200.304591,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.65 n_over_5ms=0
+205.306626,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.62 n_over_5ms=0
+210.310741,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.61 n_over_5ms=0
+215.311271,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=8.95 n_over_5ms=1
+220.316210,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.54 n_over_5ms=0
+225.321258,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.57 n_over_5ms=0
+230.330109,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.79 n_over_5ms=0
+235.331208,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.47 n_over_5ms=0
+240.334306,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.53 n_over_5ms=0
+245.335126,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.62 n_over_5ms=0
+250.340871,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=2.74 n_over_5ms=0
+255.345904,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.69 n_over_5ms=0
+260.349426,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.52 n_over_5ms=0
+265.349963,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.77 n_over_5ms=0
+270.360050,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.88 n_over_5ms=0
+275.361509,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.58 n_over_5ms=0
+280.364880,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.50 n_over_5ms=0
+285.366168,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=12.18 n_over_5ms=2
+290.369156,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.87 n_over_5ms=0
+295.370981,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=8.22 n_over_5ms=2
+300.371639,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.62 n_over_5ms=0
+305.372089,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.50 n_over_5ms=0
+310.378040,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.71 n_over_5ms=0
+315.380082,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.64 n_over_5ms=0
+320.381345,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=4.82 n_over_5ms=0
+325.388706,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.65 n_over_5ms=0
+330.390546,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=4.88 n_over_5ms=0
+335.393536,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.79 n_over_5ms=0
+340.397070,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=1.30 n_over_5ms=0
+345.401895,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.47 n_over_5ms=0
+350.403944,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=14.86 n_over_5ms=1
+355.407551,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=11.88 n_over_5ms=1
+360.413272,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.53 n_over_5ms=0
+365.415085,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=2.38 n_over_5ms=0
+370.417565,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.64 n_over_5ms=0
+375.419380,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.76 n_over_5ms=0
+380.423006,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.83 n_over_5ms=0
+385.428431,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.59 n_over_5ms=0
+390.428708,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.42 n_over_5ms=0
+395.430187,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.52 n_over_5ms=0
+400.433000,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.68 n_over_5ms=0
+405.437187,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.72 n_over_5ms=0
+410.440117,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.82 n_over_5ms=0
+415.446891,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.82 n_over_5ms=0
+420.449464,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.75 n_over_5ms=0
+425.454001,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.64 n_over_5ms=0
+430.458617,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.48 n_over_5ms=0
+435.465347,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.56 n_over_5ms=0
+440.467234,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.62 n_over_5ms=0
+445.470392,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=2.77 n_over_5ms=0
+450.475039,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.69 n_over_5ms=0
+455.476399,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.52 n_over_5ms=0
+460.478574,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.60 n_over_5ms=0
+465.480695,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.49 n_over_5ms=0
+470.481336,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.82 n_over_5ms=0
+475.484882,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=3.42 n_over_5ms=0
+480.489439,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.71 n_over_5ms=0
+485.492233,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.58 n_over_5ms=0
+490.493052,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.96 n_over_5ms=0
+495.495687,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=0.62 n_over_5ms=0
+500.504716,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.52 n_over_5ms=0
+505.505510,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.72 n_over_5ms=0
+510.506456,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.90 n_over_5ms=0
+515.508711,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=1.12 n_over_5ms=0
+520.510542,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=1.16 n_over_5ms=0
+525.513449,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.61 n_over_5ms=0
+530.520363,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.67 n_over_5ms=0
+535.528264,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.76 n_over_5ms=0
+540.530169,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.74 n_over_5ms=0
+545.538779,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.65 n_over_5ms=0
+550.546246,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.60 n_over_5ms=0
+555.552698,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=3.29 n_over_5ms=0
+560.553450,stats,,NODE_A: 10.0/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.82 n_over_5ms=0
+565.557391,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=9.42 n_over_5ms=1
+570.559880,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=0.56 n_over_5ms=0
+575.564132,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=6.50 n_over_5ms=1
+580.568923,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=1.41 n_over_5ms=0
+585.572988,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.0/s | loop_lag_max_ms=0.46 n_over_5ms=0
+590.574872,stats,,NODE_A: 10.0/s  NODE_B: 10.0/s  NODE_C: 10.2/s | loop_lag_max_ms=3.10 n_over_5ms=0
+595.576600,stats,,NODE_A: 10.2/s  NODE_B: 10.2/s  NODE_C: 10.2/s | loop_lag_max_ms=0.52 n_over_5ms=0
+600.577375,stats,,NODE_A: 10.2/s  NODE_B: 10.0/s  NODE_C: 10.0/s | loop_lag_max_ms=4.66 n_over_5ms=0
+600.632108,disconnected,NODE_A,
+600.784225,disconnected,NODE_B,
+600.936700,disconnected,NODE_C,
+601.049218,end,,

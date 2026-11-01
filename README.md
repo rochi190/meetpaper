@@ -35,8 +35,9 @@
 
 ## SharkTooth 復現模擬與測試
 
-依《SharkTooth 復現模擬：延遲來源整理與測試規格》完成的模擬器與 T0–T13 測試，放在 [`sharktooth_sim/`](sharktooth_sim/)。
+依《SharkTooth 復現模擬：延遲來源整理與測試規格》完成的模擬器與 T0–T14 測試，放在 [`sharktooth_sim/`](sharktooth_sim/)。
 第一次讀請從導讀開始：[`sharktooth_sim/導讀.md`](sharktooth_sim/導讀.md)。
+STM32 實測（3 塊 B-L475E-IOT01A）的接收與分析程式、原始資料：[`Hands_on/`](Hands_on/)；和模擬的比較：[`sharktooth_sim/results/T14_hardware/README.md`](sharktooth_sim/results/T14_hardware/README.md)。
 結論總表：[`sharktooth_sim/results/README.md`](sharktooth_sim/results/README.md)；論文圖與模擬並排：`sharktooth_sim/results/fig_compare.png`。
 每個參數的出處與合理性：[`sharktooth_sim/results/provenance_paper_match.md`](sharktooth_sim/results/provenance_paper_match.md)。
 模擬變因總表（每個測試開了哪些變因）：[`sharktooth_sim/results/variables_matrix.md`](sharktooth_sim/results/variables_matrix.md)。
@@ -51,7 +52,7 @@ meetpaper/
 ├── A generic non-invasive neuromotor .pdf
 ├── SASG-DA_Sparse-Aware_Semantic-Guided_Diffusion_Augmentation_for_Myoelectric_Gesture_Recognition.pdf
 ├── SharkTooth_A_Scalable_Real-Time_Algorithm_for_BLE-Based_Wireless_Body_Sensor_Networks_Synchronization.pdf
-├── sharktooth_sim/          # SharkTooth 復現模擬（模擬器、設定檔、T0–T13 結果）
+├── sharktooth_sim/          # SharkTooth 復現模擬（模擬器、設定檔、T0–T14 結果）
 ├── claude/
 │   ├── SASG-DA 導讀教材.pdf
 │   ├── SharkTooth 導讀教材.pdf

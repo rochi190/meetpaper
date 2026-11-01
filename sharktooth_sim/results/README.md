@@ -1,4 +1,4 @@
-# 測試結果總表（T0–T13）
+# 測試結果總表（T0–T14）
 
 依《SharkTooth 復現模擬：延遲來源整理與測試規格》（`../docs/SharkTooth_模擬測試規格.md`）執行。每個測試的設定、表格與圖在各自資料夾的 `README.md`。
 所有測試都是 ≥ 20 seeds（T1–T4 的擬合 / 掃描除外，見各 README）、3600 s。
@@ -27,6 +27,7 @@
 | [T11b](T11b_slope_likelihood/README.md) 哪個組合最像 | （對照） | 完成 | 用論文三個斜率（245 / 235 / 244 ppm）算各組合的似然：**30.51 µs 與每腳 12 pF 分不出來**（差不到兩倍）；照抄 15 pF、HFADJ＋不接電容、只靠 PC 時鐘明顯較差（三張圖來自不同節點時） |
 | [T12](T12_temperature/README.md) 溫度與 t_P 解析度 | （對照） | 完成 | 加入晶振暖機＋室溫起伏、PC 時鐘溫度、ADC 計時器（RC）溫度：貼身時斜率 30 分鐘內升約 +1.5 ppm 後穩定，桌上幾乎不變，都比 +240 小兩個數量級，加了之後仍和論文相符；論文資料顯示 RC 計時器幾分鐘內變約 100 ppm、**t_P 是整數毫秒**（後者不影響同步） |
 | [T13](T13_warmup_tableII/README.md) 暖機 vs Table II 第 1 段 | Table II、Fig.10–12 | 完成 | 第 1 段（前 10 分鐘）大、之後收斂，**不加暖機就做得出來**（SharkTooth 起始收斂）；桌上的暖機幾乎不改變任何數字；暖機大到看得出來（每節點 ±10 ppm）時是後段變大、不回落，和論文相反 → 論文資料把節點間的暖機限制在約 ±3 ppm 以內 |
+| [T14](T14_hardware/README.md) 實測 vs 模擬 | 實測（3 塊 STM32） | 完成 | 實測像「物理時鐘 + 論文 Fig.3 的安靜連線」：δT 斜率 −34～−47 ppm（沒有論文的 +240）、重傳約 1.4 % 且獨立、**沒有起始尖峰**、等待外的延遲只有約 0.5 ms；照實測條件並拿掉 dongle 序列化層的模擬 11 / 11 項特徵對上，論文設定 0 項；同步誤差 0.10–0.17 ms，比論文小（沒有 AFE） |
 
 ## 最重要的發現（簡報用）
 
@@ -58,7 +59,7 @@
 
 | 規格 | 檔案 |
 |---|---|
-| `results/<test>/`：圖、summary.json、結論 README | `T0_digitize/` … `T13_warmup_tableII/` |
+| `results/<test>/`：圖、summary.json、結論 README | `T0_digitize/` … `T14_hardware/` |
 | `results/fig_compare.png` | [fig_compare.png](fig_compare.png) |
 | `results/ablation_T4.md` | [ablation_T4.md](ablation_T4.md) |
 | `results/baselines_T8.md` | [baselines_T8.md](baselines_T8.md) |

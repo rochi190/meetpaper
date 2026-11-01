@@ -1,0 +1,37 @@
+{
+  "start_local": "2026-11-01T21:42:02",
+  "names": [
+    "NODE_A",
+    "NODE_B",
+    "NODE_C"
+  ],
+  "minutes": 10.0,
+  "note": " 請求CI 30ms; 5 Hz 1 Vpp offset 1.65 V High-Z ",
+  "receiver_version": "2026-11-01b",
+  "char_uuid": "0000abce-8e22-4541-9d4c-21edae82ed19",
+  "packet_format": "<BIHB5HBB (20 bytes)",
+  "lse_hz": 32768,
+  "t_C": "time.perf_counter() - t0（秒），t0 = 所有板子連好之後、送出第一個 notify 之前（和論文一樣）",
+  "perf_counter": {
+    "implementation": "QueryPerformanceCounter()",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution": 1e-07
+  },
+  "python": "3.13.3",
+  "bleak": "3.0.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "machine": "LAPTOP-UDNHBON9",
+  "devices": {
+    "NODE_A": "FD:09:CC:3D:AC:82",
+    "NODE_B": "CA:5B:A9:42:0A:B2",
+    "NODE_C": "F6:10:D4:4A:71:43"
+  },
+  "end_elapsed_s": 601.05,
+  "packets": {
+    "NODE_A": 6069,
+    "NODE_B": 6057,
+    "NODE_C": 6076
+  },
+  "bad_length": {}
+}

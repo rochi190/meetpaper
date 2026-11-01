@@ -35,7 +35,7 @@ T5–T13 會讀 `results/T4_fig6/summary.json` 的擬合參數，所以要先跑
 | `sim/digitize.py` | T0：直接讀 PDF 向量繪圖指令數位化 Fig.3 / 4 / 6 / 10 / 12 |
 | `sim/figures.py` | 與論文相同座標範圍的圖 |
 | `sim/experiments/tN.py` | 每個測試的流程與報告 |
-| `data/` | 數位化結果（`digitized/*.csv`）、`targets.json`、Table II 轉錄（`paper_table2.csv`） |
+| `data/` | 數位化結果（`digitized/*.csv`）、`targets.json`、Table II 轉錄（`paper_table2.csv`）、實測原始資料（`hardware/`，T14 用） |
 | `results/<test>/` | 圖、`summary.json`、`README.md`（結論） |
 
 ## 讀實測資料
