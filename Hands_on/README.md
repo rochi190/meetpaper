@@ -9,8 +9,11 @@ Markdown · README.md
 | `st_receiver.py` | 用藍牙同時連 1～3 塊板子，每收到一包就打 PC 時間 t_C，存成一個實驗資料夾 | 錄資料 |
 | `st_rawplot.py` | 只畫原始的 δT = t_C − t_P，不跑 SharkTooth | 錄完先看資料本身正不正常 |
 | `st_analyze.py` | 跑 SharkTooth，畫論文樣式的 Fig. 6、Fig. 9，並印出同步誤差摘要 | 出結果 |
+| `st_table2.py` | 仿論文 Table II：每 600 秒一段的 RSE 三個指標（平均、標準差、P95） | 錄滿 1 小時後 |
+| `st_signals.py` | **每一個訊號都畫一張圖**：算法的每個中間訊號、每塊板子的 ADC 訊號、每對板子的 RSE、連線品質，並寫數字摘要 | 想看細節、寫報告 |
 
-三支程式放在同一個資料夾（`st_rawplot.py` 會用到 `st_analyze.py` 裡的函式）。
+程式放在同一個資料夾（`st_rawplot.py`、`st_table2.py`、`st_signals.py` 會用到 `st_analyze.py` 裡的函式）。
+實作和論文的對照、論文本身的錯誤、可以改進的地方：[`論文對照與改進.md`](論文對照與改進.md)。
 
 ### 檔案與資料夾的分層
 
@@ -34,7 +37,12 @@ sharktooth_pc/
     │   ├── unpredictable_delay_correction_NODE_A_annotated.png
     │   ├── unpredictable_delay_correction_NODE_A_paper.png
     │   ├── unpredictable_delay_correction_NODE_A_tilt150.png
-    │   └── synchronization_example.png
+    │   ├── synchronization_example.png
+    │   ├── rse_table.png                  ← st_table2.py（rse_table_cc.png = --gt cc）
+    │   └── signals/                       ← st_signals.py（--paper 時是 signals_paper/）
+    │       ├── NODE_A_1_timestamp_model.png … NODE_C_4_waveform.png
+    │       ├── pairs_1_rse.png、pairs_2_segments.png、sync_overlay.png、link_quality.png
+    │       └── summary.md
     └── 20261101_163000/
         └── …
 ```
@@ -344,6 +352,52 @@ NODE_A-NODE_B      0.060    0.290       0.686
 ```
 
 這是同步之後，兩個節點的 5 Hz 正弦還差多少時間（每 1 秒算一次，跳過前 60 秒）。論文 Table II 在 17 B、2～4 節點、穩態時，平均約 0.21～0.29 ms。
+
+---
+
+## 8b. `st_table2.py`（仿論文 Table II）
+
+```
+python st_table2.py runs/<資料夾>                    # 一次錄音 → <資料夾>/rse_table.png
+python st_table2.py runs/<資料夾> --gt cc            # 真實延遲改用論文的 10 kHz 互相關 → rse_table_cc.png
+python st_table2.py runs/<資料夾1> runs/<資料夾2> …   # 多次錄音 → median (IQR)，輸出到上一層的 rse_table.png
+```
+
+| 參數 | 預設 | 說明 |
+| --- | --- | --- |
+| `--ci`、`--tilt` | 0.030、100 | 和 `st_analyze.py` 一樣 |
+| `--gt` | `fit` | 真實延遲：`fit` = 5 Hz 正弦擬合（沒有量化）；`cc` = 論文 Eq. 25 的 10 kHz 互相關（0.1 ms 解析度） |
+| `--out` | 見上 | 指定輸出的 PNG |
+
+三個指標都是論文 Section IV-B 的：|RSE| 平均、RSE 標準差（Table II）、P95 \|RSE\|（論文畫在 Fig. 12）。
+
+---
+
+## 8c. `st_signals.py`（每一個訊號的結果圖）
+
+```
+python st_signals.py runs/<資料夾> --ci 0.030
+python st_signals.py runs/<資料夾> --ci 0.030 --paper     # 論文原版算法 → signals_paper/
+python st_signals.py runs/<資料夾> --ci 0.030 --gt cc     # RSE 用互相關
+```
+
+參數 `--ci`、`--tilt`、`--paper`、`--tick-us` 和 `st_analyze.py` 一樣，`--gt` 和 `st_table2.py` 一樣。
+輸出放在 `<資料夾>/signals/`，圖的文字是英文（和論文一樣）：
+
+| 圖 | 內容 | 對應論文 |
+| --- | --- | --- |
+| `<節點>_1_timestamp_model.png` | (a) δT 與 α·t_P + β (b) 放大 3 秒：一個 CI 內的週期樣式 (c) σ100 對 CI/2 | Fig. 3 |
+| `<節點>_2_algorithm_signals.png` | 算法每個中間訊號，左欄開頭 140 s、右欄整段：δT / δT\* / δT_thr / δ̂T（都扣掉最後的直線，單位 ms）、δ²T、σ_M、λ0 與 λ、γ0 與 γ1、α(t)、β(t)、合格點比例與樞紐點 | Eq. 3–19、Fig. 6 |
+| `<節點>_3_delay.png` | 延遲 ε = δT − δ̂T 的分布、到達間隔 Δt_C（排在 CI 的倍數上）、封包間隔 Δt_P、每分鐘遲到比例 | Sec. III-A |
+| `<節點>_4_waveform.png` | 一秒的 ADC 樣本與正弦擬合、每秒的振幅、DC、SINAD、頻譜、**單一節點的同步誤差**（真實延遲 − δ̂T，扣掉常數與函數產生器漂移） | Fig. 7–8 的參考訊號 |
+| `pairs_1_rse.png` | 每一對節點的 RSE，600 s 分段虛線、±1 ms 黃帶 | Fig. 10 |
+| `pairs_2_segments.png` | 每段每對的 \|RSE\| 箱形圖；P95 \|RSE\| 對 σ²100（黑框 = Eq. 27 選到的最差那對） | Table II、Fig. 12 |
+| `sync_overlay.png` | 同步前後的波形，在開頭、中段、結尾三個時間點 | Fig. 9 |
+| `link_quality.png` | 每分鐘封包數、PC 事件迴圈延遲、累計掉包、每分鐘遲到比例 | — |
+| `summary.md` | 上面所有圖的數字，含「最差那對 vs 所有對平均」 | — |
+
+單一節點的同步誤差不需要另一塊板子：每秒在 t_P 軸上量 5 Hz 訊號的相位（= 真實的 δT，mod 200 ms），減掉 SharkTooth 的 δ̂T。
+它還包含函數產生器時基相對 PC 時鐘的漂移（這次 +2.9 ppm，三塊板子共用一條斜線），程式用各板斜率的中位數把它扣掉。
 
 ---
 

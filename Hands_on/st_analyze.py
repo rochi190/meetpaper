@@ -124,6 +124,9 @@ class SharkTooth:
         self.b = np.zeros(2)
         self.alpha = self.beta = 0.0
         self.valid = False
+        # 每一步的中間訊號（給 st_signals.py 畫圖；不影響算法）
+        self.sigma = self.lam0 = self.lam = self.thr = math.nan
+        self.branch = 0                                           # 0 = 新樞紐點、1 = 合格點（Eq.12）、2 = 不合格（Eq.14）
 
     def step(self, tP, tC):
         dT = tC - tP                                              # Eq.(3)
@@ -133,12 +136,15 @@ class SharkTooth:
         sigma = float(np.std(self.d2)) if len(self.d2) >= 2 else 0.0          # Eq.(7)
         lam0 = 1.0 if sigma == 0 else min(self.CI / (2 * sigma), 1.0)         # Eq.(10)
         pivot = False
+        self.sigma, self.lam0, self.lam, self.thr = sigma, lam0, math.nan, math.nan
         if dT < self.dT0:                                         # Eq.(11) 新樞紐點
             self.dT0, self.g0, self.tP0, self.g1 = dT, 0.0, tP, math.inf
             pivot = True
+            self.branch = 0
         else:
             dtp1 = tP - self.tP1
             thr = self.dT1 + self.g1 * dtp1 if dtp1 != 0 else self.dT1        # Eq.(9)
+            self.thr = thr
             if dT < thr:                                          # Eq.(12)
                 sp = self.prev_star if self.prev_star is not None else dT
                 lam = self.lam_max * lam0 if dT >= sp else self.lam_max       # Eq.(13)
@@ -147,8 +153,10 @@ class SharkTooth:
                 self.g1 = self.g0
                 self.dT1 = self.dT0 + self.g0 * (tP - self.tP0)
                 self.tP1 = tP
+                self.lam, self.branch = lam, 1
             else:
                 self.g1 += self.g1_inc                            # Eq.(14)
+                self.branch = 2
         star = self.dT0 + self.g0 * (tP - self.tP0)               # Eq.(8)
         self.prev_star = star
         if tP > self.tP0 + self.settle:                           # Algorithm 1
@@ -175,7 +183,12 @@ def run_sharktooth(d, CI, tilt_ppm, keep_last=True):
     k = tilt_ppm * 1e-6
     tP, tC = d["tP"], d["t_C"]
     st = SharkTooth(CI, keep_last=keep_last)
-    out = np.array([st.step(p, c + k * (p - tP[0])) for p, c in zip(tP, tC)], dtype=float)
+    out, tr = [], []
+    for p, c in zip(tP, tC):
+        out.append(st.step(p, c + k * (p - tP[0])))
+        tr.append((st.sigma, st.lam0, st.lam, st.thr, st.g0, st.g1, st.alpha, st.beta, st.branch))
+    out = np.array(out, dtype=float)
+    tr = np.array(tr, dtype=float)
     tilt = k * (tP - tP[0])
     d["dT"] = out[:, 0] - tilt
     d["star"] = out[:, 1] - tilt
@@ -185,6 +198,14 @@ def run_sharktooth(d, CI, tilt_ppm, keep_last=True):
     d["alpha_ppm"] = (st.alpha - k) * 1e6
     d["beta_s"] = st.beta + k * tP[0]              # 預傾斜是 k·(t_P − t_P[0])，扣回後截距要補 k·t_P[0]
     d["ab_valid"] = bool(st.valid)                 # 錄完時 α、β 是否有效（--paper 且還在 30 s 穩定期時為 False）
+    # 每一包的中間訊號（全部扣回預傾斜，單位和論文一樣：秒、s/s）
+    d["sigma"], d["lam0"], d["lam"] = tr[:, 0], tr[:, 1], tr[:, 2]   # Eq.(7)、(10)、(13)（λ 只在合格點有值）
+    d["thr"] = tr[:, 3] - tilt                                        # Eq.(9) δT_thr（樞紐點那一包是 nan）
+    d["g0"], d["g1"] = tr[:, 4] - k, tr[:, 5] - k                     # Eq.(8) γ0、Eq.(9) γ1（γ1 可能是 ∞）
+    d["alpha_t"] = np.where(d["valid"], tr[:, 6] - k, np.nan)         # 每一包當下的 α、β（沒有輸出時是 nan）
+    d["beta_t"] = np.where(d["valid"], tr[:, 7] + k * tP[0], np.nan)
+    d["branch"] = tr[:, 8].astype(int)                                # 0 樞紐點、1 合格、2 不合格
+    d["CI"] = CI
 
 
 # --------------------------------------------------------------------------- 樣本時間
@@ -436,7 +457,8 @@ def main():
                     help="完全照論文：不加預傾斜（--tilt 0），穩定期內 α = β = 0（Eq. 18）")
     ap.add_argument("--annotate", action="store_true", help="另外輸出加註版 Fig. 6（標出 α、β、開頭突降、帶寬）")
     ap.add_argument("--tick-us", type=float, default=None,
-                    help="每個 tick 當成幾 µs（預設精確的 30.5176）。填 30.51 = 模擬論文韌體的換算誤差（約 −248 ppm）")
+                    help="每個 tick 當成幾 µs（預設精確的 30.5176）。填 30.51 = 模擬論文韌體的換算誤差"
+                         "（t_P 慢約 248 ppm → δT 斜率多 +248 ppm）")
     a = ap.parse_args()
 
     paper_style()
@@ -445,7 +467,8 @@ def main():
     nodes = load(src, tick_s=(a.tick_us * 1e-6) if a.tick_us else 1.0 / LSE_HZ)
     if a.tick_us:
         print(f"注意：tick 換算用 {a.tick_us} µs（精確值 {1e6 / LSE_HZ:.4f} µs），"
-              f"等於人為加上 {(a.tick_us * 1e-6 * LSE_HZ - 1) * 1e6:+.0f} ppm 的時間戳誤差")
+              f"等於 t_P 有 {(a.tick_us * 1e-6 * LSE_HZ - 1) * 1e6:+.0f} ppm 的換算誤差"
+              f"（δT 斜率多 {(1 - a.tick_us * 1e-6 * LSE_HZ) * 1e6:+.0f} ppm）")
     print("節點：", ", ".join(f"{k}（{v['tP'].size} 包）" for k, v in nodes.items()))
     if a.paper:
         a.tilt = 0.0

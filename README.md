@@ -37,7 +37,7 @@
 
 依《SharkTooth 復現模擬：延遲來源整理與測試規格》完成的模擬器與 T0–T14 測試，放在 [`sharktooth_sim/`](sharktooth_sim/)。
 第一次讀請從導讀開始：[`sharktooth_sim/導讀.md`](sharktooth_sim/導讀.md)。
-STM32 實測（3 塊 B-L475E-IOT01A）的接收與分析程式、原始資料：[`Hands_on/`](Hands_on/)；和模擬的比較：[`sharktooth_sim/results/T14_hardware/README.md`](sharktooth_sim/results/T14_hardware/README.md)。
+STM32 實測（3 塊 B-L475E-IOT01A）的接收與分析程式、原始資料：[`Hands_on/`](Hands_on/)（每個訊號的結果圖：`Hands_on/<run>/signals/`；論文對照與改進：[`Hands_on/論文對照與改進.md`](Hands_on/論文對照與改進.md)）；和模擬的比較：[`sharktooth_sim/results/T14_hardware/README.md`](sharktooth_sim/results/T14_hardware/README.md)。
 結論總表：[`sharktooth_sim/results/README.md`](sharktooth_sim/results/README.md)；論文圖與模擬並排：`sharktooth_sim/results/fig_compare.png`。
 每個參數的出處與合理性：[`sharktooth_sim/results/provenance_paper_match.md`](sharktooth_sim/results/provenance_paper_match.md)。
 模擬變因總表（每個測試開了哪些變因）：[`sharktooth_sim/results/variables_matrix.md`](sharktooth_sim/results/variables_matrix.md)。
