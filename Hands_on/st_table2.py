@@ -137,6 +137,8 @@ def segment_metrics(edges, rse):
             y = x[m][np.isfinite(x[m])]
             if y.size and np.percentile(np.abs(y), 95) > top:
                 best, top = pair, np.percentile(np.abs(y), 95)
+        if best is None:                                                   # 這段沒有任何 RSE（SharkTooth 沒有輸出）
+            continue
         y = rse[best][m]
         y = y[np.isfinite(y)] * 1e3
         avg[s], sd[s], p95[s] = np.abs(y).mean(), y.std(), np.percentile(np.abs(y), 95)
